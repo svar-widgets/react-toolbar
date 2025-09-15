@@ -1,0 +1,8 @@
+.demo-box.wx-y8EMsQBT {
+  --wx-input-width: 234px;
+}
+
+.demo-box.wx-y8EMsQBT .demo-toolbar-wide {
+  border: 2px solid var(--wx-background-alt);
+  max-width: 100%;
+}

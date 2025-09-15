@@ -1,0 +1,21 @@
+.wx-label.wx-U0Bx7pIR {
+  width: 100%;
+  white-space: nowrap;
+  color: var(--wx-input-font-color);
+  padding: var(--wx-input-padding);
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+i.wx-U0Bx7pIR {
+  margin-right: 8px;
+  font-size: var(--wx-icon-size);
+}
+
+.wx-label.wx-U0Bx7pIR:hover {
+  background-image: linear-gradient(
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+}

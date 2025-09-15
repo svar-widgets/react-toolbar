@@ -1,0 +1,14 @@
+i.wx-3cuSqONJ {
+  margin-right: 8px;
+  font-size: var(--wx-icon-size);
+  color: var(--wx-color-font);
+}
+.wx-item.wx-3cuSqONJ {
+  cursor: pointer;
+  white-space: nowrap;
+  line-height: 36px;
+  height: 36px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}

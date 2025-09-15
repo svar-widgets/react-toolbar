@@ -1,0 +1,7 @@
+.topbar.wx-53lDZ7f0 {
+  height: 100%;
+  border-right: 1px solid #ddd;
+}
+.topbar .wideSelect {
+  --wx-input-width: 160px;
+}

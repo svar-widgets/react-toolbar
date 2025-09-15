@@ -1,0 +1,11 @@
+.topbar.wx-0fQr88Be .wideSelect {
+  --wx-input-width: 160px;
+}
+.topbar.wx-0fQr88Be .bigButton,
+.topbar.wx-0fQr88Be .bigButton button {
+  height: 100%;
+  width: 80px;
+}
+.topbar.wx-0fQr88Be .bigButton i {
+  display: block !important;
+}

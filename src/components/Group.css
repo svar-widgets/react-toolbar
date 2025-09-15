@@ -1,0 +1,45 @@
+.wx-tb-group.wx-wSVFAGym {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+}
+.wx-group-collapsed.wx-wSVFAGym {
+  flex-flow: row;
+}
+.wx-collapsed.wx-wSVFAGym {
+  display: flex;
+  padding: 10px;
+  flex-flow: row;
+  cursor: pointer;
+}
+.wx-group-collapsed.wx-wSVFAGym .wx-collapsed.wx-wSVFAGym {
+  align-items: center;
+}
+
+.wx-label.wx-wSVFAGym {
+  font-weight: var(--wx-label-font-weight);
+  font-size: var(--wx-font-size-sm);
+  color: var(--wx-color-font);
+  text-align: center;
+  display: flex;
+  padding: 4px 2px 4px 12px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.wx-tb-group .wx-dropdown {
+  overflow: inherit;
+}
+.wx-column.wx-wSVFAGym {
+  align-items: stretch;
+}
+.wx-column .wx-tb-element {
+  align-self: stretch;
+}
+.wx-tb-body.wx-wSVFAGym {
+  height: 100%;
+  display: flex;
+}
+.wx-column.wx-wSVFAGym > .wx-tb-body.wx-wSVFAGym {
+  flex-flow: column;
+}

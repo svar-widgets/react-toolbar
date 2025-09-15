@@ -1,0 +1,37 @@
+.wx-spacer.wx-KVAsgMam {
+  flex: 1;
+}
+.wx-tb-element.wx-KVAsgMam {
+  padding: 4px;
+  flex-shrink: 0;
+  align-self: center;
+  display: flex;
+}
+.wx-menu.wx-tb-element.wx-KVAsgMam {
+  height: 36px;
+  line-height: 36px;
+  padding: 2px 8px;
+  background-color: var(--wx-background);
+}
+
+.wx-menu button {
+  width: 100%;
+  background: transparent;
+  text-align: left;
+  padding-left: 0;
+  font-weight: var(--wx-font-weight);
+  font-size: var(--wx-font-size);
+}
+.wx-menu .wx-tb-element {
+  align-self: stretch;
+}
+.wx-menu.wx-tb-element button:hover {
+  background: var(--wx-background-alt);
+}
+.wx-menu button i {
+  margin-right: 4px;
+  font-size: var(--wx-icon-size);
+}
+.wx-menu.wx-tb-element:hover {
+  background: var(--wx-background-alt);
+}

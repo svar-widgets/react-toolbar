@@ -1,0 +1,10 @@
+i.wx-HXpG4gnx {
+  margin-right: 8px;
+  font-size: var(--wx-button-icon-size);
+  color: var(--wx-icon-color);
+}
+.wx-item.wx-HXpG4gnx {
+  cursor: pointer;
+  white-space: nowrap;
+  line-height: 26px;
+}
