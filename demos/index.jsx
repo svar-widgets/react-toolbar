@@ -10,7 +10,7 @@ import {
   WillowDark,
 } from '@svar-ui/react-core';
 
-import '@wx/react-core/style.css';
+import '@svar-ui/react-core/style.css';
 
 const skins = [
   { id: 'willow', label: 'Willow', Component: Willow },
