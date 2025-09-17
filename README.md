@@ -1,5 +1,5 @@
 <div align="center">
-	
+
 # SVAR React Toolbar
 
 [![npm](https://img.shields.io/npm/v/@svar-ui/react-toolbar.svg)](https://www.npmjs.com/package/@svar-ui/react-toolbar)
@@ -17,7 +17,7 @@
 **SVAR React Toolbar** is a customizable React UI component that helps you build panels of buttons and icons, giving users quick access to key actions and tools in your app. It supports different button types, multi-line toolbars, collapsible button groups, and responsive layouts that adapt to different screen sizes. Compatible with React 18 and 19.
 
 <div align="center">
-	
+
 <img src="https://svar.dev/images/github/github-toolbar.png" alt="Svelte Toolbar Component" style="width: 800px;">
 
 </div>
@@ -28,7 +28,7 @@ To use SVAR React Toolbar, simply import the package and include the component i
 
 ```jsx
 	import { Toolbar } from "@svar-ui/react-toolbar";
-    import "@svar-ui/react-toolbar/style.css";
+  import "@svar-ui/react-toolbar/all.css";
 
     function MyComponent(){
 	    const items = [
