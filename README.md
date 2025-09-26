@@ -27,16 +27,16 @@
 To use SVAR React Toolbar, simply import the package and include the component in to .jsx file:
 
 ```jsx
-	import { Toolbar } from "@svar-ui/react-toolbar";
-  import "@svar-ui/react-toolbar/all.css";
+    import { Toolbar } from "@svar-ui/react-toolbar";
+    import "@svar-ui/react-toolbar/all.css";
 
     function MyComponent(){
-	    const items = [
-    		{ id: 'label', text: 'Toolbar with icon buttons' },
-		    { id: 'search', comp: 'button', icon: 'wxi-search' },
-    		{ comp: 'spacer' },
-		    { id: 'edit', comp: 'button', icon: 'wxi-edit-outline'}
-		];
+        const items = [
+            { id: 'label', text: 'Toolbar with icon buttons' },
+            { id: 'search', comp: 'button', icon: 'wxi-search' },
+            { comp: 'spacer' },
+            { id: 'edit', comp: 'button', icon: 'wxi-edit-outline'}
+        ];
 
         return (<Toolbar items={items} />);
     }

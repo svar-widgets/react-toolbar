@@ -7,11 +7,18 @@ import { uid } from '@svar-ui/lib-dom';
 import { useWritableProp } from '@svar-ui/lib-react';
 import './Toolbar.css';
 
+function normalize(list) {
+  list.forEach((item) => {
+    if (!item.id) item.id = uid();
+  });
+  return list;
+}
+
 function Toolbar(props) {
   const {
     items: itemsProp,
     menuCss = '',
-    css,
+    css = '',
     values: valuesProp,
     overflow = 'menu',
     onClick,
@@ -21,15 +28,17 @@ function Toolbar(props) {
   const [items, setItems] = useWritableProp(itemsProp || []);
   const [values, setValues] = useWritableProp(valuesProp || null);
 
+  const visibleItems = useMemo(() => normalize(items), [items]);
+
   const divRef = useRef(null);
   const lastToolbarStateRef = useRef(-1);
 
   const [menuItems, setMenuItems] = useState([]);
 
   // refs to keep latest values for callbacks created once
-  const itemsRef = useRef(items);
+  const itemsRef = useRef(visibleItems);
   useEffect(() => {
-    itemsRef.current = items;
+    itemsRef.current = visibleItems;
   }, [items]);
 
   const overflowRef = useRef(overflow);
@@ -167,13 +176,6 @@ function Toolbar(props) {
     }
   }, [items]);
 
-  function normalize(list) {
-    list.forEach((item) => {
-      if (!item.id) item.id = uid();
-    });
-    return list;
-  }
-
   useEffect(() => {
     const ro = new ResizeObserver(() => processOverflow());
     if (divRef.current) ro.observe(divRef.current);
@@ -183,17 +185,15 @@ function Toolbar(props) {
     };
   }, []);
 
-  const visibleItems = useMemo(() => normalize(items), [items]);
-
   return (
     <div
       className={`wx-VdPSJj8y wx-toolbar ${css || ''} ${overflow === 'wrap' ? 'wx-wrap' : ''}`}
       ref={divRef}
     >
-      {visibleItems.map((item, index) =>
+      {visibleItems.map((item) =>
         item.items ? (
           <Group
-            key={item.id || index}
+            key={item.id}
             item={item}
             values={values}
             onClick={onClick}
@@ -201,7 +201,7 @@ function Toolbar(props) {
           />
         ) : (
           <BarComponent
-            key={item.id || index}
+            key={item.id}
             item={item}
             values={values}
             onClick={onClick}

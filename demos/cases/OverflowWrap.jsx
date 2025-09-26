@@ -94,7 +94,7 @@ function OverflowWrap() {
 
   return (
     <div className="wx-Y133m83v column" style={{ width: `${width}px` }}>
-      <Toolbar items={items} menuWidth="150" overflow="wrap" />
+      <Toolbar items={items} overflow="wrap" />
       <div className="wx-Y133m83v demo-status">{message}</div>
     </div>
   );

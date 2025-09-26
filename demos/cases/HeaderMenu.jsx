@@ -22,7 +22,6 @@ export default function HeaderMenu() {
         icon: 'wxi-dots-v',
         collapsed: true,
         layout: 'column',
-        menu: true,
         items: [
           {
             id: 'done',
@@ -37,11 +36,11 @@ export default function HeaderMenu() {
             text: 'Delete item',
             handler: onClick,
           },
-          { comp: 'separator', menu: true },
+          { comp: 'separator' },
           {
             id: 'purge',
             comp: 'button',
-            type: 'danger',
+            type: 'danger block',
             text: 'Purge all data',
             handler: onClick,
           },

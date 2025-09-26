@@ -5,7 +5,7 @@ import Spacer from '../buttons/Spacer.jsx';
 import './BarComponent.css';
 
 // eslint-disable-next-line no-unused-vars
-const omitKey = ({ key, ...rest }) => rest;
+const omitKey = ({ key, text, ...rest }) => rest;
 
 function BarComponent(props) {
   const { item = {}, menu = false, values, onClick, onChange } = props;
@@ -47,7 +47,7 @@ function BarComponent(props) {
   }, [menu, item]);
 
   if (item && item.comp == 'spacer') {
-    return <Spacer menu={menu} />;
+    return <Spacer />;
   } else if (item && item.comp == 'separator') {
     return <Separator menu={menu} />;
   } else {
