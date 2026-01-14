@@ -1,6 +1,6 @@
 {
   "name": "@svar-ui/react-toolbar",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "Flexible React toolbar component for creating customizable button panels",
   "productTag": "toolbar",
   "type": "module",
@@ -52,7 +52,7 @@
   "dependencies": {
     "@svar-ui/core-locales": "2.4.0",
     "@svar-ui/lib-dom": "0.11.1",
-    "@svar-ui/react-core": "2.4.0"
+    "@svar-ui/react-core": "2.4.1"
   },
   "homepage": "https://svar.dev/react/core/",
   "repository": {
