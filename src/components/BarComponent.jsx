@@ -1,4 +1,5 @@
 import { useMemo, useCallback } from 'react';
+import { setID } from '@svar-ui/lib-dom';
 import { getItemHandler } from '../helpers';
 import Separator from '../buttons/Separator.jsx';
 import Spacer from '../buttons/Spacer.jsx';
@@ -64,7 +65,7 @@ function BarComponent(props) {
     return (
       <div
         className={'wx-KVAsgMam ' + className}
-        data-id={item ? item.id : undefined}
+        data-id={item ? setID(item.id) : undefined}
       >
         <ReactComponent
           value={value}

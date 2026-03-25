@@ -1,0 +1,39 @@
+## 2.5.0
+
+- Using React Core v2.5.0
+
+## Version 2.4.3
+
+### Fixes
+
+- Sourcemap included
+
+## 2.4.1
+
+- Using React Core v2.4.1
+
+## 2.4.0
+
+- Using React Core v2.4.0
+
+## 2.3.1
+
+### Fixes
+
+- Incorrect types for callback props
+
+## 2.3.0
+
+### New features
+
+- TypeScript definitions
+
+### Fixes
+
+- item `menuText` property is not applied
+
+## 2.2.0
+
+### Initial features
+
+Provides all the same functionality as Svelte Toolbar 2.2.0
