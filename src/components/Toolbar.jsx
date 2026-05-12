@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useRef } from 'react';
+import { useState, useEffect, useMemo, useRef, useLayoutEffect } from 'react';
 import Menu from './Menu.jsx';
 import Group from './Group.jsx';
 import BarComponent from './BarComponent.jsx';
@@ -21,6 +21,7 @@ function Toolbar(props) {
     css = '',
     values: valuesProp,
     overflow = 'menu',
+    layout = 'row',
     onClick,
     onChange,
   } = props;
@@ -31,7 +32,6 @@ function Toolbar(props) {
   const visibleItems = useMemo(() => normalize(items), [items]);
 
   const divRef = useRef(null);
-  const lastToolbarStateRef = useRef(-1);
 
   const [menuItems, setMenuItems] = useState([]);
 
@@ -70,7 +70,7 @@ function Toolbar(props) {
     let sum = 0;
     for (let i = 0; i < it.length; i++) {
       if (it[i].comp !== 'spacer') {
-        sum += nodes[i].clientWidth;
+        sum += nodes[i]?.clientWidth || 0;
         if (it[i].comp === 'separator') sum += 8;
       }
     }
@@ -123,48 +123,56 @@ function Toolbar(props) {
 
     if (ov === 'wrap') return;
 
+    const nodes = div.children;
+    // restore all items so widths can be measured
+    for (let i = 0; i < it.length; i++) {
+      if (nodes[i]) nodes[i].style.display = '';
+    }
+
     const visibleWidth = div.clientWidth;
     const fullWidth = div.scrollWidth;
     const needMenu = fullWidth > visibleWidth;
 
     if (needMenu) {
       if (ov === 'collapse') return collapseGroups(visibleWidth);
-      const nodes = div.children;
-      let sum = 0;
 
+      // pinned items always stay visible
+      let pinnedWidth = 0;
       for (let i = 0; i < it.length; i++) {
+        if (it[i].pinned) pinnedWidth += nodes[i].clientWidth;
+      }
+
+      let sum = 0;
+      for (let i = 0; i < it.length; i++) {
+        if (it[i].pinned) continue;
         sum += nodes[i].clientWidth;
         if (it[i].comp === 'separator') sum += 8;
-        if (sum > visibleWidth - 40) {
-          if (lastToolbarStateRef.current === i) return;
-          lastToolbarStateRef.current = i;
-
+        if (sum > visibleWidth - 40 - pinnedWidth) {
+          // we need to hide nodes[i] and all next non-pinned nodes
           const newMenuItems = [];
           for (let j = i; j < it.length; j++) {
+            if (it[j].pinned) continue;
             newMenuItems.push(it[j]);
-            nodes[j].style.visibility = 'hidden';
+            nodes[j].style.display = 'none';
           }
-          if (i > 0 && it[i - 1].comp === 'separator') {
-            nodes[i - 1].style.visibility = 'hidden';
+          // hide the ending separator
+          if (
+            i > 0 &&
+            it[i - 1].comp === 'separator' &&
+            !it[i - 1].pinned
+          ) {
+            nodes[i - 1].style.display = 'none';
           }
           setMenuItems(newMenuItems);
           break;
         }
-        nodes[i].style.visibility = '';
       }
     } else {
       const freeWidth = visibleWidth - getTotalWidth();
       if (freeWidth <= 0) return;
       if (ov === 'collapse') return expandGroups(freeWidth);
 
-      if ((menuItemsRef.current || []).length) {
-        lastToolbarStateRef.current = null;
-        const nodes = div.children;
-        for (let i = 0; i < it.length; i++) {
-          nodes[i].style.visibility = '';
-        }
-        setMenuItems([]);
-      }
+      if ((menuItemsRef.current || []).length) setMenuItems([]);
     }
   }
 
@@ -176,20 +184,29 @@ function Toolbar(props) {
     }
   }, [items]);
 
-  useEffect(() => {
-    const ro = new ResizeObserver(() => processOverflow());
+  useLayoutEffect(() => {
+    const ro = new ResizeObserver(() => {
+      processOverflow();
+    });
     if (divRef.current) ro.observe(divRef.current);
-
     return () => {
-      ro.disconnect();
+      if (ro) ro.disconnect();
     };
   }, []);
 
+  const className = [
+    'wx-VdPSJj8y',
+    'wx-toolbar',
+    css || '',
+    overflow === 'wrap' ? 'wx-wrap' : '',
+    layout === 'column' ? 'wx-column' : '',
+    menuItems.length ? 'wx-has-menu' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   return (
-    <div
-      className={`wx-VdPSJj8y wx-toolbar ${css || ''} ${overflow === 'wrap' ? 'wx-wrap' : ''}`}
-      ref={divRef}
-    >
+    <div className={className} ref={divRef}>
       {visibleItems.map((item) =>
         item.items ? (
           <Group

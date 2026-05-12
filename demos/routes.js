@@ -1,5 +1,6 @@
 import BasicInit from './cases/BasicInit.jsx';
 import OverflowMenu from './cases/OverflowMenu.jsx';
+import OverflowMenuPinned from './cases/OverflowMenuPinned.jsx';
 import OverflowMenuGroups from './cases/OverflowMenuGroups.jsx';
 import OverflowCollapsed from './cases/OverflowCollapsed.jsx';
 import MultiLine from './cases/MultiLine.jsx';
@@ -23,6 +24,12 @@ export const links = [
   ['/buttons/:skin', 'Button types', Buttons, 'Buttons'],
   ['/values/:skin', 'Binding values', Values, 'Values'],
   ['/menu/:skin', 'Overflow menu', OverflowMenu, 'OverflowMenu'],
+  [
+    '/menu-pinned/:skin',
+    'Overflow menu pinned',
+    OverflowMenuPinned,
+    'OverflowMenuPinned',
+  ],
   ['/wrap/:skin', 'Overflow wrap', OverflowWrap, 'OverflowWrap'],
   [
     '/menu-groups/:skin',

@@ -5,7 +5,14 @@
   align-items: stretch;
   padding: 4px;
   position: relative;
+  min-height: 48px;
+}
+.wx-toolbar.wx-has-menu.wx-VdPSJj8y {
+  padding-right: 48px;
 }
 .wx-toolbar.wx-wrap.wx-VdPSJj8y {
   flex-wrap: wrap;
+}
+.wx-column.wx-VdPSJj8y {
+  flex-flow: column;
 }

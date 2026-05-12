@@ -1,3 +1,11 @@
+## 2.5.1
+
+### Fixes
+
+- Impossible to arrange first level items as a column
+- Impossible to fix certain items as always visible
+- Error with total width calculation
+
 ## 2.5.0
 
 - Using React Core v2.5.0
