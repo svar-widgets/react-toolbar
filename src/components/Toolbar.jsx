@@ -3,16 +3,9 @@ import Menu from './Menu.jsx';
 import Group from './Group.jsx';
 import BarComponent from './BarComponent.jsx';
 
-import { uid } from '@svar-ui/lib-dom';
 import { useWritableProp } from '@svar-ui/lib-react';
+import { normalizeToolbarItems } from '../helpers';
 import './Toolbar.css';
-
-function normalize(list) {
-  list.forEach((item) => {
-    if (!item.id) item.id = uid();
-  });
-  return list;
-}
 
 function Toolbar(props) {
   const {
@@ -29,17 +22,17 @@ function Toolbar(props) {
   const [items, setItems] = useWritableProp(itemsProp || []);
   const [values, setValues] = useWritableProp(valuesProp || null);
 
-  const visibleItems = useMemo(() => normalize(items), [items]);
+  const barItems = useMemo(() => normalizeToolbarItems(items), [items]);
 
   const divRef = useRef(null);
 
   const [menuItems, setMenuItems] = useState([]);
 
   // refs to keep latest values for callbacks created once
-  const itemsRef = useRef(visibleItems);
+  const barItemsRef = useRef(barItems);
   useEffect(() => {
-    itemsRef.current = visibleItems;
-  }, [items]);
+    barItemsRef.current = barItems;
+  }, [barItems]);
 
   const overflowRef = useRef(overflow);
   useEffect(() => {
@@ -66,7 +59,7 @@ function Toolbar(props) {
     const div = divRef.current;
     if (!div) return 0;
     const nodes = div.children;
-    const it = itemsRef.current || [];
+    const it = barItemsRef.current || [];
     let sum = 0;
     for (let i = 0; i < it.length; i++) {
       if (it[i].comp !== 'spacer') {
@@ -79,18 +72,19 @@ function Toolbar(props) {
 
   function collapseGroups() {
     const div = divRef.current;
-    const it = itemsRef.current || [];
+    const it = barItemsRef.current || [];
     if (!div) return;
 
     for (let i = it.length - 1; i >= 0; i--) {
+      // close rightmost open group
       if (it[i].items && !it[i].collapsed) {
         it[i].collapsed = true;
         it[i].$width = div.children[i].offsetWidth;
         // schedule after DOM update
         scheduleOverflowCheckRef.current = true;
 
-        // trigger update similar to `items = [...items];`
-        setItems([...it]);
+        // items are not deep reactive, so we need to trigger the update
+        setItems([...items]);
         return;
       }
     }
@@ -98,18 +92,20 @@ function Toolbar(props) {
 
   function expandGroups(freeSpace) {
     const div = divRef.current;
-    const it = itemsRef.current || [];
+    const it = barItemsRef.current || [];
     if (!div) return;
 
     for (let i = 0; i < it.length; i++) {
+      // open leftmost closed group that was collapsed by overflow
       if (it[i].collapsed && it[i].$width) {
+        // check if group can fit in free space
         if (it[i].$width - div.children[i].offsetWidth < freeSpace + 10) {
           it[i].collapsed = false;
+          // items are not deep reactive, so we need to trigger the update
+          setItems([...items]);
           // schedule after DOM update
           scheduleOverflowCheckRef.current = true;
         }
-
-        setItems([...it]);
         return;
       }
     }
@@ -118,7 +114,7 @@ function Toolbar(props) {
   function processOverflow() {
     const div = divRef.current;
     if (!div) return;
-    const it = itemsRef.current || [];
+    const it = barItemsRef.current || [];
     const ov = overflowRef.current;
 
     if (ov === 'wrap') return;
@@ -134,7 +130,7 @@ function Toolbar(props) {
     const needMenu = fullWidth > visibleWidth;
 
     if (needMenu) {
-      if (ov === 'collapse') return collapseGroups(visibleWidth);
+      if (ov === 'collapse') return collapseGroups();
 
       // pinned items always stay visible
       let pinnedWidth = 0;
@@ -156,11 +152,7 @@ function Toolbar(props) {
             nodes[j].style.display = 'none';
           }
           // hide the ending separator
-          if (
-            i > 0 &&
-            it[i - 1].comp === 'separator' &&
-            !it[i - 1].pinned
-          ) {
+          if (i > 0 && it[i - 1].comp === 'separator' && !it[i - 1].pinned) {
             nodes[i - 1].style.display = 'none';
           }
           setMenuItems(newMenuItems);
@@ -207,7 +199,7 @@ function Toolbar(props) {
 
   return (
     <div className={className} ref={divRef}>
-      {visibleItems.map((item) =>
+      {barItems.map((item) =>
         item.items ? (
           <Group
             key={item.id}

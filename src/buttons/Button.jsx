@@ -2,7 +2,7 @@ import { Button as CoreButton } from '@svar-ui/react-core';
 import './Button.css';
 
 function Button(props) {
-  const { icon, text = '', css, type, disabled, menu, onClick } = props;
+  const { icon, title, text = '', tooltip, css, type, disabled, menu, onClick } = props;
 
   if (menu) {
     return (
@@ -18,7 +18,9 @@ function Button(props) {
       icon={icon}
       type={type}
       css={css}
+      title={title}
       text={text}
+      tooltip={tooltip}
       disabled={disabled}
       onClick={onClick}
     />

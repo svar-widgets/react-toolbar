@@ -10,6 +10,7 @@ import Buttons from './cases/Buttons.jsx';
 import Values from './cases/Values.jsx';
 import Ribbon from './cases/Ribbon.jsx';
 import HeaderMenu from './cases/HeaderMenu.jsx';
+import Tooltips from './cases/Tooltips.jsx';
 
 export const links = [
   ['/base/:skin', 'Toolbar basic', BasicInit, 'BasicInit'],
@@ -22,6 +23,7 @@ export const links = [
   ],
   ['/ribbon/:skin', 'Ribbon', Ribbon, 'Ribbon'],
   ['/buttons/:skin', 'Button types', Buttons, 'Buttons'],
+  ['/tooltip/:skin', 'Button tooltips', Tooltips, 'Tooltips'],
   ['/values/:skin', 'Binding values', Values, 'Values'],
   ['/menu/:skin', 'Overflow menu', OverflowMenu, 'OverflowMenu'],
   [

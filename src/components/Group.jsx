@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import BarComponent from './BarComponent.jsx';
 import { Dropdown } from '@svar-ui/react-core';
+import { collapseSeparators } from '../helpers';
 import './Group.css';
 
 export default function Group({
@@ -62,7 +63,7 @@ export default function Group({
       ) : (
         <>
           <div className="wx-wSVFAGym wx-tb-body">
-            {item.items.map((sub, index) =>
+            {collapseSeparators(item.items).map((sub, index) =>
               sub.items ? (
                 <Group
                   key={sub.id || index}

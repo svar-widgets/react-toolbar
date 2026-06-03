@@ -1,3 +1,15 @@
+## 2.6.0
+
+### New features
+
+- Tooltip for toolbar items
+
+### Fixes
+
+- Duplicate separators are auto removed
+- Impossible to arrange first level items as a column
+- Impossible to fix certain items as always visible
+
 ## 2.5.1
 
 ### Fixes

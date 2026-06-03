@@ -2,7 +2,8 @@ import { Button } from '@svar-ui/react-core';
 import './Icon.css';
 
 export default function Icon(props) {
-  const { icon, text, css, type, disabled, menu, onClick } = props;
+  const { icon, title, text, tooltip, css, type, disabled, menu, onClick } =
+    props;
 
   if (menu) {
     return (
@@ -20,8 +21,9 @@ export default function Icon(props) {
       icon={icon}
       type={type}
       css={css}
-      title={text}
       disabled={disabled}
+      title={title}
+      tooltip={tooltip}
       onClick={onClick}
     />
   );
