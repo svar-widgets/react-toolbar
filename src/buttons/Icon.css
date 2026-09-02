@@ -1,7 +1,9 @@
 i.wx-3cuSqONJ {
-  margin-right: 8px;
   font-size: var(--wx-icon-size);
   color: var(--wx-color-font);
+}
+.wx-text-icon.wx-3cuSqONJ i {
+  margin-right: 8px;
 }
 .wx-item.wx-3cuSqONJ {
   cursor: pointer;

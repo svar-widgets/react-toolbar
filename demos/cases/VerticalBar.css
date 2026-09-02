@@ -1,0 +1,9 @@
+.bar-container.wx-aaarq9Bx {
+  flex: 1;
+  border: 10px solid #ccc;
+  display: flex;
+  flex-direction: row;
+}
+.empty-space.wx-aaarq9Bx {
+  flex: 100;
+}

@@ -31,7 +31,16 @@ export declare const Toolbar: FC<{
   onChange?: (ev: { value: any; item: IToolbarItem }) => void;
 }>;
 
+export declare const ButtonList: FC<{
+  options?: { id: string | number; label: string }[];
+  value?: string | number;
+  css?: string;
+  disabled?: boolean;
+  onChange?: (ev: { value: string | number }) => void;
+}>;
+
 export declare function registerToolbarItem(
   type: string,
   handler: FC<any>,
+  config?: { menu?: boolean },
 ): void;

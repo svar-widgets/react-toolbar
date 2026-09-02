@@ -6,11 +6,12 @@ export default function Icon(props) {
     props;
 
   if (menu) {
+    const className = ['wx-3cuSqONJ', 'wx-item', text ? 'wx-text-icon' : '']
+      .filter(Boolean)
+      .join(' ');
     return (
-      <div className="wx-3cuSqONJ wx-item" onClick={onClick}>
-        {icon ? (
-          <i className={`wx-3cuSqONJ ${icon || ''} ${css || ''}`}></i>
-        ) : null}
+      <div className={className} onClick={onClick}>
+        <i className={`wx-3cuSqONJ ${icon || 'wxi-empty'} ${css || ''}`}></i>
         {text}
       </div>
     );

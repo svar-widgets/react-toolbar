@@ -1,0 +1,14 @@
+.wx-button-list.wx-aabQKtQg {
+  line-height: normal;
+}
+.wx-button-list.wx-aabQKtQg button {
+  width: 100%;
+}
+.wx-button-list.wx-aabQKtQg button:not(:first-child) {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.wx-button-list.wx-aabQKtQg button:not(:last-child) {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}

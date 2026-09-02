@@ -1,6 +1,10 @@
 import { useState, useMemo } from 'react';
-import { Toolbar } from '../../src/index';
+import { Toolbar, ButtonList, registerToolbarItem } from '../../src/index';
+import { Segmented } from '@svar-ui/react-core';
 import './OverflowMenu.css';
+
+registerToolbarItem('segmented', Segmented);
+registerToolbarItem('segmented', ButtonList, { menu: true });
 
 function OverflowMenu() {
   const [width, setWidth] = useState(270);
@@ -58,7 +62,16 @@ function OverflowMenu() {
         text: 'Edit',
         title: 'Ctrl+E',
       },
-      { id: 'delete', comp: 'button', text: 'Delete', handler: onClick },
+      {
+        id: 'mode',
+        comp: 'segmented',
+        value: '1',
+        options: [
+          { id: '1', label: 'All' },
+          { id: '2', label: 'Active' },
+        ],
+        handler: onClick,
+      },
     ],
     [],
   );

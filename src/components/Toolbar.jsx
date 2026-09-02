@@ -23,6 +23,7 @@ function Toolbar(props) {
   const [values, setValues] = useWritableProp(valuesProp || null);
 
   const barItems = useMemo(() => normalizeToolbarItems(items), [items]);
+  const vertical = layout === 'column';
 
   const divRef = useRef(null);
 
@@ -38,6 +39,11 @@ function Toolbar(props) {
   useEffect(() => {
     overflowRef.current = overflow;
   }, [overflow]);
+
+  const verticalRef = useRef(vertical);
+  useEffect(() => {
+    verticalRef.current = vertical;
+  }, [vertical]);
 
   const menuItemsRef = useRef(menuItems);
   useEffect(() => {
@@ -117,7 +123,7 @@ function Toolbar(props) {
     const it = barItemsRef.current || [];
     const ov = overflowRef.current;
 
-    if (ov === 'wrap') return;
+    if (ov === 'wrap' || verticalRef.current) return;
 
     const nodes = div.children;
     // restore all items so widths can be measured
@@ -191,7 +197,7 @@ function Toolbar(props) {
     'wx-toolbar',
     css || '',
     overflow === 'wrap' ? 'wx-wrap' : '',
-    layout === 'column' ? 'wx-column' : '',
+    vertical ? 'wx-column' : '',
     menuItems.length ? 'wx-has-menu' : '',
   ]
     .filter(Boolean)

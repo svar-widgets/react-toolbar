@@ -15,4 +15,8 @@
 }
 .wx-column.wx-VdPSJj8y {
   flex-flow: column;
+  width: auto;
+}
+.wx-column.wx-VdPSJj8y > .wx-tb-element {
+  width: 100%;
 }

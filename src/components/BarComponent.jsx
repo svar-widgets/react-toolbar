@@ -12,8 +12,8 @@ function BarComponent(props) {
   const { item = {}, menu = false, values, onClick, onChange } = props;
 
   const itemComponent = useMemo(
-    () => getItemHandler(item.comp || 'label'),
-    [item],
+    () => getItemHandler(item.comp, { menu }),
+    [item, menu],
   );
 
   const handleClick = useCallback(() => {

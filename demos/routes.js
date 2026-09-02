@@ -11,6 +11,7 @@ import Values from './cases/Values.jsx';
 import Ribbon from './cases/Ribbon.jsx';
 import HeaderMenu from './cases/HeaderMenu.jsx';
 import Tooltips from './cases/Tooltips.jsx';
+import VerticalBar from './cases/VerticalBar.jsx';
 
 export const links = [
   ['/base/:skin', 'Toolbar basic', BasicInit, 'BasicInit'],
@@ -46,4 +47,5 @@ export const links = [
     'OverflowCollapsed',
   ],
   ['/header/:skin', 'Header menu', HeaderMenu, 'HeaderMenu'],
+  ['/vertical/:skin', 'Vertical toolbar', VerticalBar, 'VerticalBar'],
 ];
