@@ -1,3 +1,11 @@
+## 2.6.2
+
+### Fixes
+
+- An item with key throws an error when the Toolbar has no values
+- Changing an item without key writes `values["undefined"]`
+- ButtonList without css gets an undefined CSS class
+
 ## 2.6.1
 
 ### Fixes

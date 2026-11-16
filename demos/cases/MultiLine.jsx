@@ -138,7 +138,7 @@ export default function MultiLine() {
   return (
     <>
       <div className="wx-5mAzWDTQ topbar">
-        <Toolbar items={items} values={values} groupPopups={true} />
+        <Toolbar items={items} values={values} />
       </div>
       <div className="wx-5mAzWDTQ demo-status">{message}</div>
     </>

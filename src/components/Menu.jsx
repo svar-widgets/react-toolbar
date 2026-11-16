@@ -1,30 +1,25 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import BarComponent from './BarComponent.jsx';
 import Group from './Group.jsx';
 import { Dropdown, Button } from '@svar-ui/react-core';
 import './Menu.css';
 
 function Menu({ items = [], css, values, width, onClick, onChange }) {
-  const [popup, setPopup] = useState(undefined);
-  const div = useRef(null);
+  const [popup, setPopup] = useState(false);
 
   function onCancel() {
-    setPopup(null);
+    setPopup(false);
   }
   function showMenu() {
     setPopup(true);
   }
   function menuClick(ev) {
     onCancel();
-    onClick && onClick(ev);
+    onClick?.(ev);
   }
 
   return (
-    <div
-      className={`wx-Yo6BuX0p wx-menu ${css || ''}`}
-      ref={div}
-      data-id="$menu"
-    >
+    <div className={`wx-Yo6BuX0p wx-menu ${css || ''}`} data-id="$menu">
       <Button icon="wxi-dots-h" onClick={showMenu} />
       {popup ? (
         <Dropdown width={`${width}px`} onCancel={onCancel}>

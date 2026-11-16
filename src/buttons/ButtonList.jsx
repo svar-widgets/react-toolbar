@@ -3,12 +3,18 @@ import { useWritableProp } from '@svar-ui/lib-react';
 import './ButtonList.css';
 
 function ButtonList(props) {
-  const { css = '', disabled, options = [], onChange, value: valueProp } = props;
+  const {
+    css = '',
+    disabled,
+    options = [],
+    onChange,
+    value: valueProp,
+  } = props;
   const [value, setValue] = useWritableProp(valueProp);
 
   const onClickHandler = (id) => {
     setValue(id);
-    onChange && onChange({ value: id });
+    onChange?.({ value: id });
   };
 
   return (
@@ -16,7 +22,7 @@ function ButtonList(props) {
       {options.map((option) => (
         <Button
           key={option.id}
-          type={value === option.id ? 'primary' : ''}
+          type={value === option.id ? 'primary' : undefined}
           disabled={disabled}
           text={option.label}
           onClick={() => onClickHandler(option.id)}

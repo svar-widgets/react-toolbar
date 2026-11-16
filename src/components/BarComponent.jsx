@@ -21,13 +21,10 @@ function BarComponent(props) {
     if (onClick) onClick({ item });
   }, [item, onClick]);
 
-  const value = useMemo(() => {
-    return item && item.key
-      ? values
-        ? values[item.key]
-        : undefined
-      : undefined;
-  }, [item, values]);
+  const value = useMemo(
+    () => (item.key ? values?.[item.key] : undefined),
+    [item, values],
+  );
 
   const detectChange = useCallback(
     ({ value }) => {

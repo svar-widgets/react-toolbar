@@ -53,12 +53,11 @@ function Toolbar(props) {
   const scheduleOverflowCheckRef = useRef(false);
 
   function handleChange(ev) {
-    if (values) {
+    if (values && ev.item.key) {
       values[ev.item.key] = ev.value;
-      // trigger update similar to `values = values;`
       setValues({ ...values });
     }
-    onChange && onChange(ev);
+    onChange?.(ev);
   }
 
   function getTotalWidth() {

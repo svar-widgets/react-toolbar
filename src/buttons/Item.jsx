@@ -2,7 +2,7 @@ import './Item.css';
 
 function Item({ id = '', text = '', css = '', icon = '', onClick }) {
   function handleClick() {
-    onClick && onClick({ id });
+    onClick?.({ id });
   }
 
   return (

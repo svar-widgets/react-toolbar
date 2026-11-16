@@ -1,7 +1,9 @@
-import type { ReactNode, FC } from 'react';
+import type { FC } from 'react';
+
+export type TID = string | number;
 
 export interface IToolbarItem {
-  id?: string | number;
+  id?: TID;
   comp?: string | FC<any>;
   icon?: string;
   css?: string;
@@ -21,26 +23,47 @@ export interface IToolbarItem {
   [key: string]: any;
 }
 
+export type TToolbarValues = { [key: string]: any };
+
+export interface IToolbarClickEvent {
+  item: IToolbarItem;
+}
+
+export interface IToolbarChangeEvent {
+  value: any;
+  item: IToolbarItem;
+}
+
+export interface IButtonListOption {
+  id: TID;
+  label: string;
+}
+
+export interface IItemConfig {
+  menu?: boolean;
+}
+
 export declare const Toolbar: FC<{
   items?: IToolbarItem[];
   menuCss?: string;
   css?: string;
-  values?: { [key: string]: any };
+  values?: TToolbarValues | null;
   overflow?: 'collapse' | 'wrap' | 'menu';
-  onClick?: (ev: { item: IToolbarItem }) => void;
-  onChange?: (ev: { value: any; item: IToolbarItem }) => void;
+  layout?: 'row' | 'column';
+  onClick?: (ev: IToolbarClickEvent) => void;
+  onChange?: (ev: IToolbarChangeEvent) => void;
 }>;
 
 export declare const ButtonList: FC<{
-  options?: { id: string | number; label: string }[];
-  value?: string | number;
+  options?: IButtonListOption[];
+  value?: TID;
   css?: string;
   disabled?: boolean;
-  onChange?: (ev: { value: string | number }) => void;
+  onChange?: (ev: { value: TID }) => void;
 }>;
 
 export declare function registerToolbarItem(
   type: string,
   handler: FC<any>,
-  config?: { menu?: boolean },
+  config?: IItemConfig | null,
 ): void;
